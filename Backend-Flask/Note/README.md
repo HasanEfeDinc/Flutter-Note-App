@@ -58,7 +58,7 @@ The Flutter client queues local changes in Hive and syncs automatically when onl
 
 ---
 
-##🧠 Example Workflow
+## 🧠 Example Workflow
 
 Flutter app signs in via Firebase Auth
 
@@ -69,7 +69,7 @@ Flask verifies the token, retrieves the UID
 Notes are stored under the authenticated user’s Firestore path
 
 
-##🧩 Example JSON Object
+## 🧩 Example JSON Object
 {
   "id": "8fa214d30e1544c99",
   "title": "New Note",
