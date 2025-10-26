@@ -1,0 +1,37 @@
+name: note
+description: Offline-first notes app (Flutter + Bloc + Hive + Firebase Auth + Flask API)
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # UI
+  cupertino_icons: ^1.0.8
+
+  # State management
+  flutter_bloc: ^8.1.4
+
+  # Firebase
+  firebase_core: ^3.7.0
+  firebase_auth: ^5.3.1
+
+  # Networking
+  dio: ^5.7.0
+  connectivity_plus: ^6.0.4
+
+  # Offline-first cache
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
