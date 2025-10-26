@@ -19,7 +19,6 @@ It provides secure CRUD operations for user-specific notes stored in **Firebase 
 ## 🧱 Project Structure
 `app.py` – main application entry point  
 `serviceAccountKey.json` – Firebase credentials (⚠️ *exclude from git*)  
-`requirements.txt` – Python dependencies  
 
 ---
 
@@ -58,14 +57,6 @@ Supported routes:
 The Flutter client queues local changes in Hive and syncs automatically when online, calling these endpoints.
 
 ---
-
-## 🔧 Setup & Run Locally
-
-1. Clone the backend repo and install dependencies:
-   ```bash
-   pip install -r requirements.txt
-
-
 
 ##🧠 Example Workflow
 
