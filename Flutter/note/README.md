@@ -22,21 +22,21 @@ It focuses on **offline-first usage**, **local caching with Hive**, **Firebase a
 ## 🧱 Project Structure
 
 lib/
-├── main.dart
-├── firebase_options.dart
-└── src/
-    ├── blocs/                      # State management (NotesCubit, NotesState)
-    ├── data/                       # Repository & local/remote data sources
-    │   ├── local_data_source.dart
-    │   ├── remote_data_source.dart
-    │   └── notes_repository_impl.dart
-    ├── models/                     # Note model (data class)
-    ├── pages/                      # Screens (Login, Notes, Detail)
-    │   ├── auth_gate.dart
-    │   ├── login_page.dart
-    │   ├── notes_page.dart
-    │   └── note_detail_page.dart
-    └── widgets/                    # Reusable UI components (NoteItem, etc.)
+├─ main.dart
+├─ firebase_options.dart
+└─ src/
+   ├─ blocs/                  # State management (NotesCubit, NotesState)
+   ├─ data/                   # Repository & data sources
+   │  ├─ local_data_source.dart
+   │  ├─ remote_data_source.dart
+   │  └─ notes_repository_impl.dart
+   ├─ models/                 # Note model (data class)
+   ├─ pages/                  # Screens (Login, Notes, Detail)
+   │  ├─ auth_gate.dart
+   │  ├─ login_page.dart
+   │  ├─ notes_page.dart
+   │  └─ note_detail_page.dart
+   └─ widgets/                # Reusable UI components (NoteItem, etc.)
 
 
 ---
