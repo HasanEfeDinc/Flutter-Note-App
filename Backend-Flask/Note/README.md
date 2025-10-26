@@ -1,84 +1,73 @@
-🐍 Notes API (Flask Backend)
+# 🐍 Notes API (Flask Backend)
 
-This is a lightweight backend API built with Flask and Firebase Admin SDK, designed to integrate seamlessly with the Flutter Notes App.
-It provides secure CRUD operations for user-specific notes stored in Firebase Firestore and protected via Firebase Authentication.
+This is a lightweight backend API built with **Flask** and **Firebase Admin SDK**, designed to integrate seamlessly with the Flutter Notes App.  
+It provides secure CRUD operations for user-specific notes stored in **Firebase Firestore** and protected via **Firebase Authentication**.
 
-🚀 Features
+---
 
-🔐 Authentication: Token verification via Firebase ID tokens
+## 🚀 Features
+- 🔐 **Authentication:** Token verification via Firebase ID tokens  
+- 🗂️ **CRUD Endpoints:** Create, Read, Update, and Delete notes  
+- 📌 **Pinned Notes:** Supports pinning/unpinning logic with proper ordering  
+- 🌐 **CORS Enabled:** Allows requests from the Flutter frontend  
+- 🧩 **Clean JSON responses:** Consistent structure for all endpoints  
+- 🧱 **Firestore Integration:** Notes stored per user under `/users/{uid}/notes`  
+- 🛡️ **Error Handling:** Clear HTTP status codes and messages  
 
-🗂️ CRUD Endpoints: Create, Read, Update, and Delete notes
+---
 
-📌 Pinned Notes: Supports pinning/unpinning logic with proper ordering
+## 🧱 Project Structure
+`app.py` – main application entry point  
+`serviceAccountKey.json` – Firebase credentials (⚠️ *exclude from git*)  
+`requirements.txt` – Python dependencies  
 
-🌐 CORS Enabled: Allows requests from the Flutter frontend
+---
 
-🧩 Clean JSON responses: Consistent structure for all endpoints
+## ⚙️ Technologies & Libraries
 
-🧱 Firestore Integration: Notes stored per user under /users/{uid}/notes
+| Library | Purpose |
+|----------|----------|
+| **Flask** | Lightweight web framework |
+| **Flask-CORS** | Cross-origin requests from Flutter |
+| **Firebase-Admin** | Firebase Authentication & Firestore client |
+| **uuid / datetime** | Generate note IDs and timestamps |
 
-🛡️ Error Handling: Clear HTTP status codes and messages
+---
 
-🧱 Project Structure
+## 🧩 How It Works
 
-app.py – main application entry point
-serviceAccountKey.json – Firebase credentials (⚠️ exclude from git)
-requirements.txt – Python dependencies
-
-⚙️ Technologies & Libraries
-Library	Purpose
-Flask	Lightweight web framework
-Flask-CORS	Cross-origin requests from Flutter
-Firebase-Admin	Firebase Authentication & Firestore client
-uuid / datetime	Generate note IDs and timestamps
-🧩 How It Works
-1. Authentication
-
-Each request includes an Authorization: Bearer <Firebase ID Token> header.
+### 1. Authentication  
+Each request includes an `Authorization: Bearer <Firebase ID Token>` header.  
 The backend verifies this token via the Firebase Admin SDK and extracts the user’s UID.
 
-2. CRUD Logic
+### 2. CRUD Logic  
+Each user has an isolated Firestore sub-collection: users/{uid}/notes
 
-Each user has an isolated Firestore sub-collection:
-
-users/{uid}/notes
 
 
 Supported routes:
 
-Method	Endpoint	Description
-GET	/notes	Returns user’s notes (sorted, pinned first)
-POST	/notes	Creates a new note
-PUT	/notes/<note_id>	Updates existing note fields
-DELETE	/notes/<note_id>	Deletes a note
-3. Offline Support (via Flutter App)
+| Method | Endpoint | Description |
+|:-------|:----------|:-------------|
+| `GET` | `/notes` | Returns user’s notes (sorted, pinned first) |
+| `POST` | `/notes` | Creates a new note |
+| `PUT` | `/notes/<note_id>` | Updates existing note fields |
+| `DELETE` | `/notes/<note_id>` | Deletes a note |
 
+### 3. Offline Support (via Flutter App)
 The Flutter client queues local changes in Hive and syncs automatically when online, calling these endpoints.
 
-🔧 Setup & Run Locally
+---
 
-Clone the backend repo and install dependencies:
+## 🔧 Setup & Run Locally
 
-pip install -r requirements.txt
-
-
-Place your Firebase credentials file:
-
-/serviceAccountKey.json
+1. Clone the backend repo and install dependencies:
+   ```bash
+   pip install -r requirements.txt
 
 
-(Keep it private — never commit it!)
 
-Start the Flask server:
-
-python app.py
-
-
-The API runs at:
-
-http://127.0.0.1:8000
-
-🧠 Example Workflow
+##🧠 Example Workflow
 
 Flutter app signs in via Firebase Auth
 
@@ -88,7 +77,8 @@ Flask verifies the token, retrieves the UID
 
 Notes are stored under the authenticated user’s Firestore path
 
-🧩 Example JSON Object
+
+##🧩 Example JSON Object
 {
   "id": "8fa214d30e1544c99",
   "title": "New Note",
@@ -97,29 +87,3 @@ Notes are stored under the authenticated user’s Firestore path
   "pinnedAt": "2025-10-25T18:20:00Z",
   "createdAt": "2025-10-25T18:20:00Z"
 }
-
-🧭 Integration Flow
-
-Flutter → Firebase Auth → Flask API → Firestore
-
-All requests are authorized and user-scoped, ensuring isolation between users.
-
-🛠️ Development Notes
-
-Always ignore serviceAccountKey.json in .gitignore.
-
-Can be deployed easily on Render, Railway, or Google Cloud Run.
-
-API uses UTC timestamps (ISO-8601).
-
-Works seamlessly with Flutter’s Dio client.
-
-💡 Future Improvements
-
-Add /sync endpoint for bulk operations
-
-Implement pagination for large note sets
-
-Add rate limiting and request validation
-
-Support structured logging for production monitoring
